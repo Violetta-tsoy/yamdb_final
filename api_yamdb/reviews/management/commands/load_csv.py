@@ -1,16 +1,8 @@
 from csv import DictReader
 
 from django.core.management import BaseCommand
-
-from reviews.models import (
-    Category,
-    Comment,
-    Genre,
-    GenreTitle,
-    Review,
-    Title,
-    User,
-)
+from reviews.models import (Category, Comment, Genre, GenreTitle, Review,
+                            Title, User)
 
 ALREADY_LOADED_ERROR_MESSAGE = """
     If you need to reload the category, comments, genre,
@@ -60,7 +52,6 @@ class Command(BaseCommand):
             if model.objects.exists():
                 print(f'data already loaded from {file} or already exists')
                 print(ALREADY_LOADED_ERROR_MESSAGE)
-                return
 
         print("Loading data")
 
