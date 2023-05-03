@@ -1,7 +1,5 @@
 import uuid
 
-from api import permissions, serializers
-from api.filters import TitleFilter
 from django.core.mail import send_mail
 from django.db.models import Avg
 from django_filters.rest_framework import DjangoFilterBackend
@@ -12,6 +10,9 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from api import permissions, serializers
+from api.filters import TitleFilter
 from reviews import models
 
 
@@ -179,9 +180,7 @@ class AuthViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'signup':
             return serializers.SignUpSerializer
-        elif self.action == 'token':
-            return serializers.TokenSerializer
-        return None
+        return serializers.TokenSerializer
 
     @action(detail=False, methods=['POST'])
     def signup(self, request):
