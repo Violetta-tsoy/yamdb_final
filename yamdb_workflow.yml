@@ -73,7 +73,7 @@ jobs:
             cd infra
             sudo docker compose stop
             sudo docker compose rm web
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/api_yamdb:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb:latest
             rm .env
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
