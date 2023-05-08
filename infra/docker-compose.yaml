@@ -8,7 +8,13 @@ services:
       - 5432:5432
     volumes:
       - db_data:/var/lib/postgresql/data/
-  
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ../frontend/:/app/result_build/
+
   web:
     image: vetatsoi/yamdb
     restart: always
